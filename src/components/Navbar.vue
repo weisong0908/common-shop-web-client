@@ -23,7 +23,7 @@
         <router-link
           class="navbar-item"
           v-for="page in pages"
-          :to="page.path"
+          :to="{ name: page.name }"
           :key="page.title"
         >
           {{ page.title }}
@@ -53,7 +53,11 @@ export default {
       pages: [
         {
           title: "Home",
-          path: "/"
+          name: "home"
+        },
+        {
+          title: "Shopping Cart",
+          name: "shoppingCart"
         }
       ]
     };

@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
-    <h1 class="title">{{ title }}</h1>
-    <slot></slot>
-  </div>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">{{ title }}</h1>
+      <slot></slot>
+    </div>
+  </section>
 </template>
 
 <script>
