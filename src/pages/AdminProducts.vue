@@ -78,7 +78,6 @@
 
 <script>
 import Page from "../components/Page";
-
 import productService from "../services/productService";
 
 export default {
