@@ -39,29 +39,26 @@ export default {
   data() {
     return {
       products: [],
-      selectedCategory: ""
+      selectedCategory: null
     };
   },
   created() {
-    this.showProducts();
+    this.showProducts(this.$route.query.category);
   },
   beforeRouteUpdate(to, from, next) {
-    if (to.query.category == null) {
-      this.showProducts();
-    } else {
-      this.showProducts(to.query.category);
-    }
-
-    this.selectedCategory = to.query.category;
+    this.showProducts(to.query.category);
     next();
   },
   methods: {
     showProducts(category) {
-      if (category == null) this.products = productService.getProducts();
-      else
+      if (category == null) {
+        this.products = productService.getProducts();
+      } else {
         this.products = productService
           .getProducts()
           .filter(p => p.category === category);
+      }
+      this.selectedCategory = category;
     }
   }
 };
