@@ -27,6 +27,12 @@
           :key="page.title"
         >
           {{ page.title }}
+          <span
+            v-if="page.name == 'shoppingCart'"
+            class="tag is-rounded is-warning m-1"
+          >
+            2
+          </span>
         </router-link>
       </div>
 
