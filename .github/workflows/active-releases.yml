@@ -1,0 +1,23 @@
+name: Active releases
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+      - name: Setup node 10.16.3
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.16.3
+      - name: Build docker image
+        run: docker build --tag weisong0908/common-shop-web-client .
+      - name: Login to Docker Hub with access token
+        run: docker login -u weisong0908 -p ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+      - name: Push docker image to Docker Hub
+        run: docker push weisong0908/common-shop-web-client
