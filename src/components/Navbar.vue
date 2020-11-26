@@ -56,6 +56,10 @@ export default {
           name: "home"
         },
         {
+          title: "Products",
+          name: "products"
+        },
+        {
           title: "Shopping Cart",
           name: "shoppingCart"
         }
