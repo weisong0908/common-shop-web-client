@@ -5,6 +5,14 @@
         <product-category-filter></product-category-filter>
       </div>
       <div class="column">
+        <article class="message">
+          <div class="message-body" v-if="selectedCategory">
+            Showing products in <strong>{{ selectedCategory }}</strong>
+          </div>
+          <div class="message-body" v-else>
+            Showing all products
+          </div>
+        </article>
         <div class="columns is-multiline">
           <div v-for="product in products" :key="product.id">
             <div class="column">
@@ -30,17 +38,31 @@ export default {
   components: { Page, ProductCard, ProductCategoryFilter },
   data() {
     return {
-      products: []
+      products: [],
+      selectedCategory: ""
     };
   },
-  mounted() {
-    this.products = productService.getProducts();
+  created() {
+    this.showProducts();
   },
   beforeRouteUpdate(to, from, next) {
-    this.products = productService
-      .getProducts()
-      .filter(p => p.category === to.query.category);
+    if (to.query.category == null) {
+      this.showProducts();
+    } else {
+      this.showProducts(to.query.category);
+    }
+
+    this.selectedCategory = to.query.category;
     next();
+  },
+  methods: {
+    showProducts(category) {
+      if (category == null) this.products = productService.getProducts();
+      else
+        this.products = productService
+          .getProducts()
+          .filter(p => p.category === category);
+    }
   }
 };
 </script>
