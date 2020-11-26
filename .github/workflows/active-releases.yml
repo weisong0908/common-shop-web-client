@@ -37,4 +37,4 @@ jobs:
             docker stop common-shop-web-client
             docker rm common-shop-web-client
             docker pull weisong0908/common-shop-web-client
-            docker run -d -p 8080:8080 --name common-shop-web-client weisong0908/common-shop-web-client
+            docker run -d -p 8080:80 --name common-shop-web-client weisong0908/common-shop-web-client
