@@ -12,7 +12,7 @@
       </p>
     </div>
     <footer v-if="isPreview === false" class="card-footer">
-      <a href="#" class="card-footer-item">Add to Cart</a>
+      <a @click="addToCart(product)" class="card-footer-item">Add to Cart</a>
       <a href="#" class="card-footer-item">Learn More</a>
     </footer>
   </div>
@@ -20,6 +20,12 @@
 
 <script>
 export default {
-  props: ["product", "isPreview"]
+  props: ["product", "isPreview"],
+  methods: {
+    addToCart(product) {
+      this.$store.commit("addCount", 1);
+      this.$store.commit("addProductToShoppingCart", product.id);
+    }
+  }
 };
 </script>

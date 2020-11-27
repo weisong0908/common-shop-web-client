@@ -43,7 +43,7 @@
             v-if="page.name == 'shoppingCart'"
             class="tag is-rounded is-warning m-1"
           >
-            2
+            {{ productCountInShoppingCart }}
           </span>
         </router-link>
       </div>
@@ -80,6 +80,13 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    productCountInShoppingCart() {
+      return this.$store.state.productsInShoppingCart.reduce((pv, cv) => {
+        return pv + cv.count;
+      }, 0);
+    }
   }
 };
 </script>
