@@ -15,7 +15,7 @@
         aria-label="menu"
         aria-expanded="false"
         data-target="navbarMenu"
-        @click="toggleNavbarBurgerMenu"
+        @click="isNavbarBurgerMenuActive = !isNavbarBurgerMenuActive"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -28,10 +28,12 @@
       :class="
         isNavbarBurgerMenuActive ? 'navbar-menu is-active' : 'navbar-menu'
       "
+      @click="isNavbarBurgerMenuActive = false"
     >
       <div class="navbar-start">
         <router-link
           class="navbar-item"
+          active-class="has-background-white-bis"
           v-for="page in pages"
           :to="{ name: page.name }"
           :key="page.title"
@@ -69,10 +71,6 @@ export default {
       isNavbarBurgerMenuActive: false,
       pages: [
         {
-          title: "Home",
-          name: "home"
-        },
-        {
           title: "Products",
           name: "products"
         },
@@ -82,11 +80,6 @@ export default {
         }
       ]
     };
-  },
-  methods: {
-    toggleNavbarBurgerMenu() {
-      this.isNavbarBurgerMenuActive = !this.isNavbarBurgerMenuActive;
-    }
   }
 };
 </script>
