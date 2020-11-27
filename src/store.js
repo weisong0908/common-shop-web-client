@@ -18,6 +18,9 @@ export default new Vuex.Store({
       } else {
         state.productsInShoppingCart[index].count += 1;
       }
+    },
+    clearShoppingCart(state) {
+      state.productsInShoppingCart = [];
     }
   }
 });

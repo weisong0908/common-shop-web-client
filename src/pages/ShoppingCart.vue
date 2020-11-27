@@ -2,7 +2,8 @@
   <page title="Shopping Cart">
     <article class="message">
       <div class="message-body">
-        You have <strong>2</strong> items in your shopping cart.
+        You have <strong>{{ productCountInShoppingCart }}</strong> items in your
+        shopping cart.
       </div>
     </article>
     <table class="table is-hoverable is-fullwidth">
@@ -33,10 +34,13 @@
               style="max-width:100px"
               type="number"
               step="1"
+              v-model="product.count"
+              min="0"
+              @change="changeProductCount(product.id)"
             />
           </td>
           <td>
-            <strong> ${{ product.price }} </strong>
+            <strong> ${{ product.price * product.count }} </strong>
           </td>
         </tr>
       </tbody>
@@ -45,7 +49,7 @@
           <th></th>
           <th></th>
           <th></th>
-          <th>$20</th>
+          <th>${{ totalPrice }}</th>
         </tr>
       </tfoot>
     </table>
@@ -54,7 +58,9 @@
         <button class="button is-primary">Check Out</button>
       </div>
       <div class="control">
-        <button class="button is-danger">Clear Shopping Cart</button>
+        <button class="button is-danger" @click="clearShoppingCart">
+          Clear Shopping Cart
+        </button>
       </div>
     </div>
   </page>
@@ -62,6 +68,8 @@
 
 <script>
 import Page from "../components/Page.vue";
+import productService from "../services/productService";
+
 export default {
   components: { Page },
   data() {
@@ -70,22 +78,40 @@ export default {
     };
   },
   created() {
-    this.products = [
-      {
-        id: "1",
-        title: "Product 1",
-        price: 10.0,
-        category: "Category 1",
-        thumbnailUrl: "https://bulma.io/images/placeholders/640x480.png"
-      },
-      {
-        id: "2",
-        title: "Product 2",
-        price: 10.0,
-        category: "Category 1",
-        thumbnailUrl: "https://bulma.io/images/placeholders/640x480.png"
-      }
-    ];
+    const productsInShoppingCart = this.$store.state.productsInShoppingCart;
+
+    this.products = productsInShoppingCart.map(product => {
+      const productData = productService.getProduct(product.id);
+
+      return {
+        id: product.id,
+        count: parseInt(product.count),
+        title: productData.title,
+        price: productData.price,
+        thumbnailUrl: productData.thumbnailUrl
+      };
+    });
+  },
+  computed: {
+    productCountInShoppingCart() {
+      return this.$store.state.productsInShoppingCart.reduce((pv, cv) => {
+        return pv + cv.count;
+      }, 0);
+    },
+    totalPrice() {
+      return this.products.reduce((pv, cv) => {
+        return pv + cv.count * cv.price;
+      }, 0);
+    }
+  },
+  methods: {
+    changeProductCount(productId) {
+      this.$store.commit("addProductToShoppingCart", productId);
+    },
+    clearShoppingCart() {
+      this.products = [];
+      this.$store.commit("clearShoppingCart");
+    }
   }
 };
 </script>
