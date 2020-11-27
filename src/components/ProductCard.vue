@@ -23,7 +23,6 @@ export default {
   props: ["product", "isPreview"],
   methods: {
     addToCart(product) {
-      this.$store.commit("addCount", 1);
       this.$store.commit("addProductToShoppingCart", product.id);
     }
   }
