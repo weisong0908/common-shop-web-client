@@ -4,7 +4,7 @@
       <div class="columns">
         <div class="column">
           <div class="field">
-            <small>Product ID: {{ product.id }}</small>
+            <p class="has-text-grey">Product ID: {{ product.id }}</p>
           </div>
           <product-form :product="product"></product-form>
         </div>

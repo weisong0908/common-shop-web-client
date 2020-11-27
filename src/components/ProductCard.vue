@@ -6,10 +6,9 @@
       </figure>
     </div>
     <div class="card-content">
-      <h2 class="title is-4">{{ product.title }}</h2>
-      <p>
-        <strong> $ {{ product.price }} </strong>
-      </p>
+      <p class="has-text-grey is-size-7">{{ product.category }}</p>
+      <p class="is-size-4 has-text-weight-bold">{{ product.title }}</p>
+      <p class="is-size-6">$ {{ product.price }}</p>
     </div>
     <footer v-if="isPreview === false" class="card-footer">
       <a @click="addToCart(product)" class="card-footer-item">Add to Cart</a>

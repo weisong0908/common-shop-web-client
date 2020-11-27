@@ -15,6 +15,17 @@
       </div>
     </div>
     <div class="field">
+      <label for="productDescription" class="label">Description</label>
+      <div class="control">
+        <textarea
+          class="textarea"
+          id="productDescription"
+          rows="5"
+          v-model="product.description"
+        ></textarea>
+      </div>
+    </div>
+    <div class="field">
       <label for="productPrice" class="label">Price</label>
       <div class="control has-icons-left">
         <span class="icon is-small is-left">
