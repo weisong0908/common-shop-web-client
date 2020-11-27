@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    productsInShoppingCart: []
+    productsInShoppingCart: [],
+    order: {}
   },
   mutations: {
     addProductToShoppingCart(state, productId) {
@@ -21,6 +22,10 @@ export default new Vuex.Store({
     },
     clearShoppingCart(state) {
       state.productsInShoppingCart = [];
+    },
+    createOrder(state, payload) {
+      state.order.products = payload.products;
+      state.order.totalPrice = payload.totalPrice;
     }
   }
 });

@@ -55,7 +55,9 @@
     </table>
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-primary">Check Out</button>
+        <button class="button is-primary" @click="checkOut">
+          Check Out
+        </button>
       </div>
       <div class="control">
         <button class="button is-danger" @click="clearShoppingCart">
@@ -111,6 +113,20 @@ export default {
     clearShoppingCart() {
       this.products = [];
       this.$store.commit("clearShoppingCart");
+    },
+    checkOut() {
+      this.$store.commit("createOrder", {
+        products: this.products.map(p => {
+          return {
+            id: p.id,
+            title: p.title,
+            price: p.price * p.count,
+            count: p.count
+          };
+        }),
+        totalPrice: this.totalPrice
+      });
+      this.$router.push({ name: "checkOut" });
     }
   }
 };
