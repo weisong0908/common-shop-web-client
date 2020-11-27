@@ -49,6 +49,23 @@
       </div>
 
       <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            User
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              Profile
+            </a>
+            <router-link class="navbar-item" :to="{ name: 'myOrders' }">
+              My Orders
+            </router-link>
+            <hr class="navbar-divider" />
+            <a class="navbar-item">
+              Report an issue
+            </a>
+          </div>
+        </div>
         <div class="navbar-item">
           <div class="buttons">
             <a class="button is-primary">
@@ -73,6 +90,10 @@ export default {
         {
           title: "Products",
           name: "products"
+        },
+        {
+          title: "My Orders",
+          name: "myOrders"
         },
         {
           title: "Shopping Cart",

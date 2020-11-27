@@ -5,6 +5,7 @@ import Products from "./pages/Products";
 import ShoppingCart from "./pages/ShoppingCart";
 import CheckOut from "./pages/CheckOut";
 import OrderSuccess from "./pages/OrderSuccess";
+import MyOrders from "./pages/MyOrders";
 import Login from "./pages/Login";
 import AdminProducts from "./pages/AdminProducts";
 import AdminProductDetail from "./pages/AdminProductDetail";
@@ -18,6 +19,7 @@ const router = new VueRouter({
     { name: "shoppingCart", path: "/shopping-cart", component: ShoppingCart },
     { name: "checkOut", path: "/check-out", component: CheckOut },
     { name: "orderSuccess", path: "/order-success", component: OrderSuccess },
+    { name: "myOrders", path: "/my/orders", component: MyOrders },
     { name: "login", path: "/login", component: Login },
     {
       name: "adminProducts",
@@ -30,7 +32,7 @@ const router = new VueRouter({
       component: AdminProductDetail
     },
     { name: "adminOrders", path: "/admin/orders", component: AdminOrders },
-    { name: "notFound", path: "*", component: AdminOrders }
+    { name: "notFound", path: "*", redirect: "/" }
   ]
 });
 
