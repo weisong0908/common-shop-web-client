@@ -1,16 +1,21 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
+      <router-link :to="{ name: 'home' }" class="navbar-item">
         <img src="../assets/logo.png" />
-      </a>
+      </router-link>
 
       <a
         role="button"
-        class="navbar-burger burger"
+        :class="
+          isNavbarBurgerMenuActive
+            ? 'navbar-burger burger is-active'
+            : 'navbar-burger burger'
+        "
         aria-label="menu"
         aria-expanded="false"
         data-target="navbarMenu"
+        @click="toggleNavbarBurgerMenu"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -18,7 +23,12 @@
       </a>
     </div>
 
-    <div id="navbarMenu" class="navbar-menu">
+    <div
+      id="navbarMenu"
+      :class="
+        isNavbarBurgerMenuActive ? 'navbar-menu is-active' : 'navbar-menu'
+      "
+    >
       <div class="navbar-start">
         <router-link
           class="navbar-item"
@@ -56,6 +66,7 @@
 export default {
   data() {
     return {
+      isNavbarBurgerMenuActive: false,
       pages: [
         {
           title: "Home",
@@ -71,6 +82,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    toggleNavbarBurgerMenu() {
+      this.isNavbarBurgerMenuActive = !this.isNavbarBurgerMenuActive;
+    }
   }
 };
 </script>
