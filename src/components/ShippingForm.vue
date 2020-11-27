@@ -87,7 +87,7 @@ export default {
   methods: {
     placeOrder() {
       this.$store.commit("placeOrder", this.customer);
-      this.$router.push({ name: "orderSuccess" });
+      this.$router.push({ name: "orderSuccess", query: { orderId: "1" } });
     }
   }
 };
