@@ -1,7 +1,7 @@
 <template>
   <div class="box">
-    <p class="is-size-4 has-text-weight-bold">Preview Your Order</p>
-    <p class="has-text-weight-bold mt-2">Order Summary</p>
+    <p class="is-size-4 has-text-weight-bold">Order Summary</p>
+    <p class="has-text-weight-bold mt-2">Order Information</p>
     <p>You have 4 items in your order</p>
     <table class=" my-4 table is-hoverable is-fullwidth">
       <tbody>

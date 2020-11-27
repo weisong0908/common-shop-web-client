@@ -26,6 +26,11 @@ export default new Vuex.Store({
     createOrder(state, payload) {
       state.order.products = payload.products;
       state.order.totalPrice = payload.totalPrice;
+    },
+    placeOrder(state, customer) {
+      state.order.customer = customer;
+      state.productsInShoppingCart = [];
+      state.order = {};
     }
   }
 });

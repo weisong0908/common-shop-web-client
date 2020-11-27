@@ -59,7 +59,9 @@
     </div>
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-primary">Place Order</button>
+        <button class="button is-primary" @click="placeOrder">
+          Place Order
+        </button>
       </div>
     </div>
   </div>
@@ -67,6 +69,12 @@
 
 <script>
 export default {
-  props: ["customer"]
+  props: ["customer"],
+  methods: {
+    placeOrder() {
+      this.$store.commit("placeOrder", this.customer);
+      this.$router.push({ name: "orderSuccess" });
+    }
+  }
 };
 </script>
