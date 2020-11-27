@@ -8,7 +8,7 @@
     <div class="card-content">
       <p class="has-text-grey is-size-7">{{ product.category }}</p>
       <p class="is-size-4 has-text-weight-bold">{{ product.title }}</p>
-      <p class="is-size-6">${{ product.price }}</p>
+      <p>${{ product.price }}</p>
     </div>
     <footer v-if="isPreview === false" class="card-footer">
       <a @click="addToCart(product)" class="card-footer-item">Add to Cart</a>
@@ -16,29 +16,29 @@
     </footer>
     <div :class="isShowModal ? 'modal is-active' : 'modal'">
       <div class="modal-background" @click="isShowModal = false"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">{{ product.title }}</p>
-          <button
-            class="delete"
-            aria-label="close"
-            @click="isShowModal = false"
-          ></button>
-        </header>
-        <section class="modal-card-body">
+      <div class="modal-content">
+        <div class="box">
+          <p class="is-size-4 has-text-weight-bold">{{ product.title }}</p>
           <p>{{ product.category }}</p>
           <figure class="image is-4by3 my-3">
             <img :src="product.thumbnailUrl" alt="Product thumbnail image" />
           </figure>
           <p class="my-3">{{ product.description }}</p>
           <p>${{ product.price }}</p>
-        </section>
-        <footer class="modal-card-foot">
-          <button class="button is-primary" @click="addToCart(product)">
-            Add to Cart
-          </button>
-          <button class="button" @click="isShowModal = false">Cancel</button>
-        </footer>
+          <br />
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-primary" @click="addToCart(product)">
+                Add to Cart
+              </button>
+            </div>
+            <div class="control">
+              <button class="button" @click="isShowModal = false">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

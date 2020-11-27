@@ -15,6 +15,20 @@
       </div>
     </div>
     <div class="field">
+      <label for="customerEmail" class="label">Email</label>
+      <div class="control has-icons-left">
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <input
+          type="text"
+          id="customerEmail"
+          class="input"
+          v-model="customer.email"
+        />
+      </div>
+    </div>
+    <div class="field">
       <label class="label">Address</label>
       <div class="control has-icons-left">
         <span class="icon is-small is-left">

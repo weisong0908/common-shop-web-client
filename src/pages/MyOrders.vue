@@ -23,16 +23,10 @@
           <pre>
             {{ selectedOrder }}
           </pre>
-          <p>Order ID: {{ selectedOrder.id }}</p>
-          <p>Order date: {{ selectedOrder.date }}</p>
-          <ul>
-            <li v-for="product in selectedOrder.products" :key="product.id">
-              <p>Product ID: {{ product.id }}</p>
-              <p>Product title: {{ product.title }}</p>
-              <p>Product quantity: {{ product.count }}</p>
-              <p>Product price: {{ product.price }}</p>
-            </li>
-          </ul>
+          <order-summary
+            :order="selectedOrder"
+            :customer="selectedOrder.customer"
+          ></order-summary>
         </div>
       </div>
       <button
@@ -46,11 +40,13 @@
 
 <script>
 import Page from "../components/Page";
+import OrderSummary from "../components/OrderSummary";
 import orderService from "../services/orderService";
 
 export default {
   components: {
-    Page
+    Page,
+    OrderSummary
   },
   data() {
     return {
