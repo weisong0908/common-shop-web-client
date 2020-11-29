@@ -41,7 +41,7 @@
           {{ page.title }}
           <span
             v-if="page.name == 'shoppingCart'"
-            class="tag is-rounded is-warning m-1"
+            class="tag is-rounded is-warning mx-1"
           >
             {{ productCountInShoppingCart }}
           </span>
@@ -64,6 +64,16 @@
             <a class="navbar-item">
               Report an issue
             </a>
+            <hr class="navbar-divider" />
+            <div class="navbar-item has-text-info is-size-7">
+              Adminstration
+            </div>
+            <router-link class="navbar-item" :to="{ name: 'adminProducts' }">
+              Manage Products
+            </router-link>
+            <router-link class="navbar-item" :to="{ name: 'adminOrders' }">
+              Manage Orders
+            </router-link>
           </div>
         </div>
         <div class="navbar-item">
@@ -90,10 +100,6 @@ export default {
         {
           title: "Products",
           name: "products"
-        },
-        {
-          title: "My Orders",
-          name: "myOrders"
         },
         {
           title: "Shopping Cart",
