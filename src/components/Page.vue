@@ -9,6 +9,9 @@
 
 <script>
 export default {
+  created() {
+    document.title = process.env.VUE_APP_TITLE + " | " + this.title;
+  },
   props: {
     title: String
   }
