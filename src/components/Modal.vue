@@ -1,6 +1,6 @@
 <template>
-  <div :class="isActive ? 'modal is-active' : 'modal'">
-    <div class="modal-background" @click="toggle"></div>
+  <div :class="isActive ? 'modal is-active is-clipped' : 'modal'">
+    <div class="modal-background" @click="close"></div>
     <div class="modal-content">
       <div class="box">
         <slot></slot>
@@ -9,7 +9,7 @@
     <button
       class="modal-close is-large"
       aria-label="close"
-      @click="toggle"
+      @click="close"
     ></button>
   </div>
 </template>
@@ -18,8 +18,8 @@
 export default {
   props: ["isActive"],
   methods: {
-    toggle() {
-      this.$emit("toggle");
+    close() {
+      this.$emit("close");
     }
   }
 };

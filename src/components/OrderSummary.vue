@@ -1,8 +1,7 @@
 <template>
-  <div class="box">
-    <p class="is-size-4 has-text-weight-bold">Order Summary</p>
-    <p v-if="order.id" class="has-text-grey">Order ID: {{ order.id }}</p>
-    <p class="has-text-weight-bold mt-3">Order Information</p>
+  <div>
+    <p class="title is-4">Order Summary</p>
+    <p v-if="order.id">Order ID: {{ order.id }}</p>
     <p v-if="order.date">Order date: {{ order.date }}</p>
     <p>Order total: ${{ order.totalPrice }}</p>
     <p class="has-text-weight-bold mt-3">Products Purchased</p>

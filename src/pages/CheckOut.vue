@@ -5,10 +5,12 @@
         <shipping-form :customer="customer"></shipping-form>
       </div>
       <div class="column">
-        <order-summary
-          :order="$store.state.order"
-          :customer="customer"
-        ></order-summary>
+        <div class="box">
+          <order-summary
+            :order="$store.state.order"
+            :customer="customer"
+          ></order-summary>
+        </div>
       </div>
     </div>
   </page>
