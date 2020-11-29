@@ -1,8 +1,5 @@
 <template>
   <page title="Orders">
-    <pre>
-      {{ orders }}
-    </pre>
     <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>
