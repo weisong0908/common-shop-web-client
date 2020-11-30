@@ -1,6 +1,6 @@
 <template>
-  <page title="Manage Products">
-    <breadcrumb :links="links" currentLinkName="adminProducts"></breadcrumb>
+  <page>
+    <breadcrumb></breadcrumb>
     <div class="field">
       <div class="control">
         <button class="button is-primary">New Product</button>
@@ -89,10 +89,6 @@ export default {
   },
   data() {
     return {
-      links: [
-        { title: "Dashboard", name: "adminDashboard" },
-        { title: "Products", name: "adminProducts" }
-      ],
       products: []
     };
   },

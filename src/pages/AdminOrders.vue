@@ -1,6 +1,6 @@
 <template>
-  <page title="Manage Orders">
-    <breadcrumb :links="links" currentLinkName="adminOrders"></breadcrumb>
+  <page>
+    <breadcrumb></breadcrumb>
   </page>
 </template>
 
@@ -12,14 +12,6 @@ export default {
   components: {
     Page,
     Breadcrumb
-  },
-  data() {
-    return {
-      links: [
-        { title: "Dashboard", name: "adminDashboard" },
-        { title: "Orders", name: "adminOrders" }
-      ]
-    };
   }
 };
 </script>

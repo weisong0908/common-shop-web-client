@@ -1,5 +1,6 @@
 <template>
-  <page title="Edit Product">
+  <page>
+    <breadcrumb></breadcrumb>
     <div v-if="product != {}">
       <div class="columns">
         <div class="column">
@@ -21,10 +22,12 @@ import Page from "../components/Page";
 import ProductForm from "../components/ProductForm";
 import ProductCard from "../components/ProductCard";
 import productService from "../services/productService";
+import Breadcrumb from "../components/Breadcrumb.vue";
 
 export default {
   components: {
     Page,
+    Breadcrumb,
     ProductForm,
     ProductCard
   },

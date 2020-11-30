@@ -1,5 +1,5 @@
 <template>
-  <page title="Explore Our Products">
+  <page>
     <div class="columns">
       <div class="column is-one-quarter">
         <product-category-filter></product-category-filter>

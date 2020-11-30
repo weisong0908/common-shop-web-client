@@ -1,5 +1,5 @@
 <template>
-  <page title="Shipping">
+  <page>
     <div class="columns">
       <div class="column">
         <shipping-form :customer="customer"></shipping-form>

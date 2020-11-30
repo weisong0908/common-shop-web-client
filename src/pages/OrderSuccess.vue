@@ -1,5 +1,5 @@
 <template>
-  <page title="Order Success">
+  <page>
     <p>Thank you for shopping with us.</p>
     <p>Here is your order summary</p>
     <br />

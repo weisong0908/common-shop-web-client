@@ -9,11 +9,16 @@
 
 <script>
 export default {
-  created() {
-    document.title = process.env.VUE_APP_TITLE + " | " + this.title;
+  data() {
+    return {
+      title: ""
+    };
   },
-  props: {
-    title: String
+  created() {
+    this.title = this.$router.options.routes.find(
+      r => r.name == this.$route.name
+    ).title;
+    document.title = process.env.VUE_APP_TITLE + " | " + this.title;
   }
 };
 </script>

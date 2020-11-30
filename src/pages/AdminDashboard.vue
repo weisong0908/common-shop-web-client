@@ -1,6 +1,6 @@
 <template>
-  <page title="Administator Dashboard">
-    <breadcrumb :links="links" currentLinkName="adminDashboard"></breadcrumb>
+  <page>
+    <breadcrumb></breadcrumb>
     <p class="title is-size-4 has-text-centered">Overview</p>
     <nav class="level p-3">
       <div class="level-item has-text-centered">
@@ -45,9 +45,7 @@ export default {
     Breadcrumb
   },
   data() {
-    return {
-      links: [{ title: "Dashboard", name: "adminDashboard" }]
-    };
+    return {};
   }
 };
 </script>

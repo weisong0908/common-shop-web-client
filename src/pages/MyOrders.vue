@@ -1,5 +1,5 @@
 <template>
-  <page title="Orders">
+  <page>
     <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>

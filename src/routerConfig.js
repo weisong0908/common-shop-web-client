@@ -15,29 +15,65 @@ import AdminOrders from "./pages/AdminOrders";
 const router = new VueRouter({
   mode: "history",
   routes: [
-    { name: "home", path: "/", component: Home },
-    { name: "products", path: "/products", component: Products },
-    { name: "shoppingCart", path: "/shopping-cart", component: ShoppingCart },
-    { name: "checkOut", path: "/check-out", component: CheckOut },
-    { name: "orderSuccess", path: "/order-success", component: OrderSuccess },
-    { name: "myOrders", path: "/my/orders", component: MyOrders },
-    { name: "login", path: "/login", component: Login },
+    { name: "home", path: "/", component: Home, title: "Home" },
+    {
+      name: "products",
+      path: "/products",
+      component: Products,
+      title: "Explore Our Products"
+    },
+    {
+      name: "shoppingCart",
+      path: "/shopping-cart",
+      component: ShoppingCart,
+      title: "Shopping Cart"
+    },
+    {
+      name: "checkOut",
+      path: "/check-out",
+      component: CheckOut,
+      title: "Check Out"
+    },
+    {
+      name: "orderSuccess",
+      path: "/order-success",
+      component: OrderSuccess,
+      title: "Order Is Successful"
+    },
+    {
+      name: "myOrders",
+      path: "/my/orders",
+      component: MyOrders,
+      title: "My Orders"
+    },
+    { name: "login", path: "/login", component: Login, title: "Login" },
     {
       name: "adminProducts",
       path: "/admin/products",
-      component: AdminProducts
+      component: AdminProducts,
+      title: "Manage Products",
+      parent: "adminDashboard"
     },
     {
       name: "adminProductDetail",
       path: "/admin/products/:id",
-      component: AdminProductDetail
+      component: AdminProductDetail,
+      title: "Product Detail",
+      parent: "adminProducts"
+    },
+    {
+      name: "adminOrders",
+      path: "/admin/orders",
+      component: AdminOrders,
+      title: "Manage Orders",
+      parent: "adminDashboard"
     },
     {
       name: "adminDashboard",
       path: "/admin",
-      component: AdminDashboard
+      component: AdminDashboard,
+      title: "Administator Dashboard"
     },
-    { name: "adminOrders", path: "/admin/orders", component: AdminOrders },
     { name: "notFound", path: "*", redirect: "/" }
   ]
 });

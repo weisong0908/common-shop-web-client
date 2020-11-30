@@ -1,5 +1,5 @@
 <template>
-  <page title="Shopping Cart">
+  <page>
     <article class="message">
       <div class="message-body">
         You have <strong>{{ productCountInShoppingCart }}</strong> items in your
