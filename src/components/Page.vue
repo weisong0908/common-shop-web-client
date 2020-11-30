@@ -2,13 +2,19 @@
   <section class="section">
     <div class="container is-fluid">
       <h1 class="title">{{ title }}</h1>
+      <alert></alert>
       <slot></slot>
     </div>
   </section>
 </template>
 
 <script>
+import Alert from "../components/Alert";
+
 export default {
+  components: {
+    Alert
+  },
   data() {
     return {
       title: ""

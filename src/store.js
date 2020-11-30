@@ -6,7 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     productsInShoppingCart: [],
-    order: {}
+    order: {},
+    alert: {
+      isActive: false,
+      type: "",
+      heading: "",
+      body: ""
+    }
   },
   mutations: {
     addProductToShoppingCart(state, productId) {
@@ -31,6 +37,17 @@ export default new Vuex.Store({
       state.order.customer = customer;
       state.productsInShoppingCart = [];
       state.order = {};
+    },
+    showAlert(state, payload) {
+      state.alert = { isActive: true, ...payload };
+    },
+    hideAlert(state) {
+      state.alert = {
+        isActive: false,
+        type: "",
+        heading: "",
+        body: ""
+      };
     }
   }
 });
