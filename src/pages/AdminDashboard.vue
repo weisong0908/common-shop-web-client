@@ -1,5 +1,6 @@
 <template>
   <page title="Administator Dashboard">
+    <breadcrumb :links="links" currentLinkName="adminDashboard"></breadcrumb>
     <p class="title is-size-4 has-text-centered">Overview</p>
     <nav class="level p-3">
       <div class="level-item has-text-centered">
@@ -36,10 +37,17 @@
 
 <script>
 import Page from "../components/Page";
+import Breadcrumb from "../components/Breadcrumb";
 
 export default {
   components: {
-    Page
+    Page,
+    Breadcrumb
+  },
+  data() {
+    return {
+      links: [{ title: "Dashboard", name: "adminDashboard" }]
+    };
   }
 };
 </script>

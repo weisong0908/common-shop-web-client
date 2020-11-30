@@ -1,5 +1,6 @@
 <template>
   <page title="Manage Products">
+    <breadcrumb :links="links" currentLinkName="adminProducts"></breadcrumb>
     <div class="field">
       <div class="control">
         <button class="button is-primary">New Product</button>
@@ -78,14 +79,20 @@
 
 <script>
 import Page from "../components/Page";
+import Breadcrumb from "../components/Breadcrumb";
 import productService from "../services/productService";
 
 export default {
   components: {
-    Page
+    Page,
+    Breadcrumb
   },
   data() {
     return {
+      links: [
+        { title: "Dashboard", name: "adminDashboard" },
+        { title: "Products", name: "adminProducts" }
+      ],
       products: []
     };
   },
