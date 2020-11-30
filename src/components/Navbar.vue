@@ -68,6 +68,9 @@
             <div class="navbar-item has-text-info is-size-7">
               Adminstration
             </div>
+            <router-link class="navbar-item" :to="{ name: 'adminDashboard' }">
+              Dashboard
+            </router-link>
             <router-link class="navbar-item" :to="{ name: 'adminProducts' }">
               Manage Products
             </router-link>

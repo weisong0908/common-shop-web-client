@@ -8,6 +8,7 @@ import OrderSuccess from "./pages/OrderSuccess";
 import MyOrders from "./pages/MyOrders";
 import Login from "./pages/Login";
 import AdminProducts from "./pages/AdminProducts";
+import AdminDashboard from "./pages/AdminDashboard";
 import AdminProductDetail from "./pages/AdminProductDetail";
 import AdminOrders from "./pages/AdminOrders";
 
@@ -30,6 +31,11 @@ const router = new VueRouter({
       name: "adminProductDetail",
       path: "/admin/products/:id",
       component: AdminProductDetail
+    },
+    {
+      name: "adminDashboard",
+      path: "/admin",
+      component: AdminDashboard
     },
     { name: "adminOrders", path: "/admin/orders", component: AdminOrders },
     { name: "notFound", path: "*", redirect: "/" }
