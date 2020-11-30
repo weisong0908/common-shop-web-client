@@ -23,6 +23,11 @@
             </div>
           </div>
         </div>
+        <pagination
+          :currentPageNumber="2"
+          :totalPageCount="20"
+          @goToPage="goToPage"
+        ></pagination>
       </div>
     </div>
   </page>
@@ -32,10 +37,11 @@
 import Page from "../components/Page";
 import ProductCard from "../components/ProductCard";
 import ProductCategoryFilter from "../components/ProductCategoryFilter";
+import Pagination from "../components/Pagination";
 import productService from "../services/productService";
 
 export default {
-  components: { Page, ProductCard, ProductCategoryFilter },
+  components: { Page, ProductCard, ProductCategoryFilter, Pagination },
   data() {
     return {
       products: [],
@@ -59,6 +65,9 @@ export default {
           .filter(p => p.category === category);
       }
       this.selectedCategory = category;
+    },
+    goToPage(pageNumber) {
+      alert("go to " + pageNumber);
     }
   }
 };
