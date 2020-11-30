@@ -23,6 +23,7 @@ export default {
     };
   },
   created() {
+    this.$store.dispatch("clearOrder");
     const orderId = this.$route.query.orderId;
     this.order = orderService.getOrders().find(o => o.id == orderId);
   }

@@ -86,7 +86,7 @@ export default {
   props: ["customer"],
   methods: {
     placeOrder() {
-      this.$store.commit("placeOrder", this.customer);
+      this.$store.dispatch("placeOrder", this.customer);
       this.$router.push({ name: "orderSuccess", query: { orderId: "1" } });
     }
   }

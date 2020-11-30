@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     showAlert() {
-      this.$store.commit("showAlert", {
+      this.$store.dispatch("showAlert", {
         type: "warning",
         heading: "Warning",
         message: "Something bad happened"

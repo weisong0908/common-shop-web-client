@@ -17,7 +17,7 @@
 export default {
   methods: {
     hideAlert() {
-      this.$store.commit("hideAlert");
+      this.$store.dispatch("hideAlert");
     }
   }
 };

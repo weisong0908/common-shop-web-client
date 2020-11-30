@@ -6,7 +6,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     productsInShoppingCart: [],
-    order: {},
+    order: {
+      products: [],
+      totalPrice: "",
+      customer: {}
+    },
     alert: {
       isActive: false,
       type: "",
@@ -15,39 +19,71 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    addProductToShoppingCart(state, productId) {
-      let index = state.productsInShoppingCart.findIndex(
-        p => p.id == productId
-      );
-
-      if (index == -1) {
-        state.productsInShoppingCart.push({ id: productId, count: 1 });
-      } else {
-        state.productsInShoppingCart[index].count += 1;
-      }
+    addNewProductInShoppingCart(state, productId) {
+      state.productsInShoppingCart.push({ id: productId, count: 1 });
+    },
+    increaseProductCountInShoppingCart(state, index) {
+      state.productsInShoppingCart[index].count += 1;
     },
     clearShoppingCart(state) {
       state.productsInShoppingCart = [];
     },
-    createOrder(state, payload) {
-      state.order.products = payload.products;
-      state.order.totalPrice = payload.totalPrice;
+    addProductsToOrder(state, products) {
+      state.order.products = [...products];
     },
-    placeOrder(state, customer) {
-      state.order.customer = customer;
-      state.productsInShoppingCart = [];
-      state.order = {};
+    addTotalPriceToOrder(state, totalPrice) {
+      state.order.totalPrice = totalPrice;
     },
-    showAlert(state, payload) {
-      state.alert = { isActive: true, ...payload };
+    addCustomerToOrder(state, customer) {
+      state.order.customer = { ...customer };
     },
-    hideAlert(state) {
-      state.alert = {
+    removeProductsFromOrder(state) {
+      state.order.products = [];
+    },
+    removeTotalPriceFromOrder(state) {
+      state.order.totalPrice = "";
+    },
+    removeCustomersFromOrder(state) {
+      state.order.customer = {};
+    },
+    updateAlert(state, payload) {
+      state.alert = { ...payload };
+    }
+  },
+  actions: {
+    appendShoppingCart({ state, commit }, productId) {
+      let index = state.productsInShoppingCart.findIndex(
+        p => p.id == productId
+      );
+
+      if (index == -1) commit("addNewProductInShoppingCart", productId);
+      else commit("increaseProductCountInShoppingCart", index);
+    },
+    clearShoppingCart({ commit }) {
+      commit("clearShoppingCart");
+    },
+    createOrder({ commit }, order) {
+      commit("addProductsToOrder", order.products);
+      commit("addTotalPriceToOrder", order.totalPrice);
+    },
+    placeOrder({ commit }, customer) {
+      commit("addCustomerToOrder", customer);
+    },
+    clearOrder({ commit }) {
+      commit("removeProductsFromOrder");
+      commit("removeTotalPriceFromOrder");
+      commit("removeCustomersFromOrder");
+    },
+    showAlert({ commit }, alert) {
+      commit("updateAlert", { isActive: true, ...alert });
+    },
+    hideAlert({ commit }) {
+      commit("updateAlert", {
         isActive: false,
         type: "",
         heading: "",
-        body: ""
-      };
+        message: ""
+      });
     }
   }
 });

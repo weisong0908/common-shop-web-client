@@ -108,14 +108,14 @@ export default {
   },
   methods: {
     changeProductCount(productId) {
-      this.$store.commit("addProductToShoppingCart", productId);
+      this.$store.dispatch("appendShoppingCart", productId);
     },
     clearShoppingCart() {
       this.products = [];
-      this.$store.commit("clearShoppingCart");
+      this.$store.dispatch("clearShoppingCart");
     },
     checkOut() {
-      this.$store.commit("createOrder", {
+      this.$store.dispatch("createOrder", {
         products: this.products.map(p => {
           return {
             id: p.id,
@@ -126,6 +126,9 @@ export default {
         }),
         totalPrice: this.totalPrice
       });
+
+      this.$store.dispatch("clearShoppingCart");
+
       this.$router.push({ name: "checkOut" });
     }
   }
