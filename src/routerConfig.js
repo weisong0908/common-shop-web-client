@@ -1,5 +1,4 @@
 import VueRouter from "vue-router";
-
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ShoppingCart from "./pages/ShoppingCart";
@@ -15,7 +14,12 @@ import AdminOrders from "./pages/AdminOrders";
 const router = new VueRouter({
   mode: "history",
   routes: [
-    { name: "home", path: "/", component: Home, title: "Home" },
+    {
+      name: "home",
+      path: "/",
+      component: Home,
+      title: "Welcome to Common Shop"
+    },
     {
       name: "products",
       path: "/products",

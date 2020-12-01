@@ -11,6 +11,10 @@ Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
+global.jQuery = require("jquery");
+let $ = global.jQuery;
+window.$ = $;
+
 new Vue({
   render: h => h(App),
   router: routerConfig,

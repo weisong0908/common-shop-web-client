@@ -1,27 +1,16 @@
 <template>
-  <page>
-    <p>hi this is home</p>
-    <button class="button" @click="showAlert">Click me</button>
-  </page>
+  <page> <hero-banners></hero-banners> </page>
 </template>
 
 <script>
 import Page from "../components/Page";
+import HeroBanners from "../components/HeroBanners";
 
 export default {
-  components: { Page },
+  components: { Page, HeroBanners },
 
   data() {
     return {};
-  },
-  methods: {
-    showAlert() {
-      this.$store.dispatch("showAlert", {
-        type: "warning",
-        heading: "Warning",
-        message: "Something bad happened"
-      });
-    }
   }
 };
 </script>

@@ -1,11 +1,9 @@
 <template>
-  <section class="section">
-    <div class="container is-fluid">
-      <h1 class="title">{{ title }}</h1>
-      <alert></alert>
-      <slot></slot>
-    </div>
-  </section>
+  <div class="section">
+    <h1 class="title">{{ title }}</h1>
+    <alert></alert>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
