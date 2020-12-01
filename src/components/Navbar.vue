@@ -113,9 +113,14 @@ export default {
   },
   computed: {
     productCountInShoppingCart() {
-      return this.$store.state.productsInShoppingCart.reduce((pv, cv) => {
-        return pv + cv.count;
-      }, 0);
+      const count = this.$store.state.productsInShoppingCart.reduce(
+        (pv, cv) => {
+          return pv + cv.count;
+        },
+        0
+      );
+
+      return parseInt(count);
     }
   }
 };

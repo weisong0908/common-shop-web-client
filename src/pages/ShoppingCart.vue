@@ -29,15 +29,39 @@
             <p class="has-text-grey">${{ product.price }} each</p>
           </td>
           <td>
-            <input
-              class="input"
-              style="max-width:100px"
-              type="number"
-              step="1"
-              v-model="product.count"
-              min="0"
-              @change="changeProductCount(product.id)"
-            />
+            <div class="field has-addons">
+              <div class="control">
+                <button
+                  class="button is-primary"
+                  :disabled="product.count === 0"
+                  @click="stepDownProductCount(product.id)"
+                >
+                  <span class="icon">
+                    <i class="fas fa-minus"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="control">
+                <input
+                  class="input"
+                  style="max-width:100px"
+                  type="number"
+                  v-model="product.count"
+                  min="0"
+                  @change="changeProductCount(product.id, product.count)"
+                />
+              </div>
+              <div class="control">
+                <button
+                  class="button is-primary"
+                  @click="stepUpProductCount(product.id)"
+                >
+                  <span class="icon">
+                    <i class="fas fa-plus"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
           </td>
           <td>
             <strong> ${{ product.price * product.count }} </strong>
@@ -55,12 +79,20 @@
     </table>
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-primary" @click="checkOut">
+        <button
+          class="button is-primary"
+          :disabled="productCountInShoppingCart === 0"
+          @click="checkOut"
+        >
           Check Out
         </button>
       </div>
       <div class="control">
-        <button class="button is-danger" @click="clearShoppingCart">
+        <button
+          class="button is-danger"
+          :disabled="productCountInShoppingCart === 0"
+          @click="clearShoppingCart"
+        >
           Clear Shopping Cart
         </button>
       </div>
@@ -96,9 +128,14 @@ export default {
   },
   computed: {
     productCountInShoppingCart() {
-      return this.$store.state.productsInShoppingCart.reduce((pv, cv) => {
-        return pv + cv.count;
-      }, 0);
+      const count = this.$store.state.productsInShoppingCart.reduce(
+        (pv, cv) => {
+          return pv + cv.count;
+        },
+        0
+      );
+
+      return parseInt(count);
     },
     totalPrice() {
       return this.products.reduce((pv, cv) => {
@@ -107,8 +144,24 @@ export default {
     }
   },
   methods: {
-    changeProductCount(productId) {
-      this.$store.dispatch("appendShoppingCart", productId);
+    stepDownProductCount(productId) {
+      const product = this.products.find(p => p.id == productId);
+      product.count--;
+      this.$store.dispatch("updateShoppingCart", {
+        productId,
+        productCount: product.count
+      });
+    },
+    stepUpProductCount(productId) {
+      const product = this.products.find(p => p.id == productId);
+      product.count++;
+      this.$store.dispatch("updateShoppingCart", {
+        productId,
+        productCount: product.count
+      });
+    },
+    changeProductCount(productId, productCount) {
+      this.$store.dispatch("updateShoppingCart", { productId, productCount });
     },
     clearShoppingCart() {
       this.products = [];

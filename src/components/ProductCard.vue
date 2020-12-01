@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     addToCart(product) {
-      this.$store.dispatch("appendShoppingCart", product.id);
+      this.$store.dispatch("addToShoppingCart", product.id);
       this.isModalShown = false;
     },
     showProductModal() {

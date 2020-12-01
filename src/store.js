@@ -25,6 +25,9 @@ export default new Vuex.Store({
     increaseProductCountInShoppingCart(state, index) {
       state.productsInShoppingCart[index].count += 1;
     },
+    updateProductCountInShoppingCart(state, payload) {
+      state.productsInShoppingCart[payload.index].count = payload.count;
+    },
     clearShoppingCart(state) {
       state.productsInShoppingCart = [];
     },
@@ -51,13 +54,23 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    appendShoppingCart({ state, commit }, productId) {
+    addToShoppingCart({ state, commit }, productId) {
       let index = state.productsInShoppingCart.findIndex(
         p => p.id == productId
       );
 
       if (index == -1) commit("addNewProductInShoppingCart", productId);
       else commit("increaseProductCountInShoppingCart", index);
+    },
+    updateShoppingCart({ state, commit }, { productId, productCount }) {
+      let index = state.productsInShoppingCart.findIndex(
+        p => p.id == productId
+      );
+
+      commit("updateProductCountInShoppingCart", {
+        index,
+        count: productCount
+      });
     },
     clearShoppingCart({ commit }) {
       commit("clearShoppingCart");
