@@ -34,7 +34,6 @@ jobs:
           key: ${{ secrets.DIGITALOCEAN_SSHKEY }}
           port: 22
           script: |
-            docker stop common-shop-web-client
-            docker rm common-shop-web-client
+            docker stop web-client
             docker pull weisong0908/common-shop-web-client
-            docker run -d -p 8080:80 --name common-shop-web-client weisong0908/common-shop-web-client
+            docker run -d --rm -p 8080:80 --name web-client weisong0908/common-shop-web-client
