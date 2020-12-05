@@ -68,7 +68,7 @@ export default {
     };
   },
   mounted() {
-    this.products = productService.getProducts();
+    productService.getProducts().then(products => (this.products = products));
   },
   methods: {
     goToPage(pageNumber) {

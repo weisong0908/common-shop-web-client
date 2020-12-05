@@ -47,8 +47,8 @@
         <div class="select">
           <select v-model="product.category">
             <option>Select dropdown</option>
-            <option value="category 1">Category 1</option>
-            <option value="category 2">Category 2</option>
+            <option value="Category 1">Category 1</option>
+            <option value="Category 2">Category 2</option>
           </select>
         </div>
       </div>

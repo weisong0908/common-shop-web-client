@@ -37,7 +37,9 @@ export default {
     };
   },
   created() {
-    this.product = productService.getProduct(this.$route.params.id);
+    productService
+      .getProduct(this.$route.params.id)
+      .then(product => (this.product = product));
   }
 };
 </script>

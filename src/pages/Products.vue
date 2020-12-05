@@ -58,11 +58,16 @@ export default {
   methods: {
     showProducts(category) {
       if (category == null) {
-        this.products = productService.getProducts();
+        productService.getProducts().then(products => {
+          this.products = products;
+        });
       } else {
-        this.products = productService
+        productService
           .getProducts()
-          .filter(p => p.category === category);
+          .then(
+            products =>
+              (this.products = products.filter(p => p.category === category))
+          );
       }
       this.selectedCategory = category;
     },
