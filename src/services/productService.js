@@ -1,6 +1,10 @@
+import axios from "axios";
+
 export default {
   getProducts() {
-    return products;
+    return axios.get(`${process.env.VUE_APP_WEBAPI}/products`).then(resp => {
+      console.log("products", resp);
+    });
   },
   getProduct(id) {
     return products.filter(p => p.id === id)[0];
