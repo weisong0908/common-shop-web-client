@@ -10,6 +10,7 @@ import AdminProducts from "./pages/AdminProducts";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminProductDetail from "./pages/AdminProductDetail";
 import AdminOrders from "./pages/AdminOrders";
+import AdminOrderDetail from "./pages/AdminOrderDetail";
 
 const router = new VueRouter({
   mode: "history",
@@ -71,6 +72,13 @@ const router = new VueRouter({
       component: AdminOrders,
       title: "Manage Orders",
       parent: "adminDashboard"
+    },
+    {
+      name: "adminOrderDetail",
+      path: "/admin/orders/:id",
+      component: AdminOrderDetail,
+      title: "Order Detail",
+      parent: "adminOrders"
     },
     {
       name: "adminDashboard",

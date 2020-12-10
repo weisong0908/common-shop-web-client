@@ -22,7 +22,7 @@
     <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>
-          <th></th>
+          <th>Product ID</th>
           <th>Title</th>
           <th>Price</th>
           <th></th>
