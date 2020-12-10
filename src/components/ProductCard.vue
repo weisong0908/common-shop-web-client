@@ -9,6 +9,8 @@
       <p class="has-text-grey is-size-7">{{ product.category }}</p>
       <p class="title is-4">{{ product.title }}</p>
       <p>${{ product.price }}</p>
+      <p v-if="product.stockLevel != 0">Stock: {{ product.stockLevel }}</p>
+      <p v-else class="has-text-grey">Out of stock</p>
     </div>
     <footer v-if="isPreview === false" class="card-footer">
       <a @click="addToCart(product)" class="card-footer-item">Add to Cart</a>
@@ -24,6 +26,8 @@
       </figure>
       <p class="my-3">{{ product.description }}</p>
       <p>${{ product.price }}</p>
+      <p v-if="product.stockLevel != 0">Stock: {{ product.stockLevel }}</p>
+      <p v-else class="has-text-grey">Out of stock</p>
       <br />
       <div class="field is-grouped">
         <div class="control">

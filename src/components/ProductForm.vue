@@ -42,6 +42,22 @@
       </div>
     </div>
     <div class="field">
+      <label for="productStockLevel" class="label">Stock level</label>
+      <div class="control has-icons-left">
+        <span class="icon is-small is-left">
+          <i class="fas fa-boxes"></i>
+        </span>
+        <input
+          type="number"
+          min="0"
+          step="1"
+          id="productStockLevel"
+          class="input"
+          v-model="product.stockLevel"
+        />
+      </div>
+    </div>
+    <div class="field">
       <label for="productCategory" class="label">Category</label>
       <div class="control">
         <div class="select">
@@ -54,7 +70,7 @@
       </div>
     </div>
     <div class="field">
-      <label for="productThumbnailUrl" class="label">ThumbnailUrl</label>
+      <label for="productThumbnailUrl" class="label">Thumbnail URL</label>
       <div class="control has-icons-left">
         <span class="icon is-small is-left">
           <i class="fas fa-globe"></i>
