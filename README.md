@@ -1,6 +1,20 @@
-# common-shop-web-client
+# Common Shop - Web Client
 
-## Project setup
+![Active releases](https://github.com/weisong0908/common-shop-web-client/workflows/Active%20releases/badge.svg)
+
+## About This Project
+
+This is the web application for the a imaginery e-commerce website called "**Common Shop**". It is built with Vue.js. as a single page application.
+
+CICD is implemented and the web application is hosted [here](https://common-shop.tengweisong.com).
+
+## This project
+
+## Getting Started
+
+This is a Vue.js project written in Javascript. To build this project simply clone this repository, install node dependencies, and build.
+
+### Install dependencies
 
 ```
 npm install
@@ -18,12 +32,8 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Dockerise for deployment (Optional)
 
 ```
-npm run lint
+docker build --tag common-shop-web-client .
 ```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
