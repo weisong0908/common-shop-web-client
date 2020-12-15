@@ -3,7 +3,7 @@
 ![Open issues](https://img.shields.io/github/issues/weisong0908/common-shop-web-client)
 ![Last commit](https://img.shields.io/github/last-commit/weisong0908/common-shop-web-client)
 
-![Active releases](https://github.com/weisong0908/common-shop-web-client/workflows/Active%20releases/badge.svg)
+![active releases](https://github.com/weisong0908/common-shop-web-client/workflows/active%20releases/badge.svg)
 
 ## About This Project
 
