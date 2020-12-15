@@ -7,7 +7,7 @@
 
 ## About This Project
 
-This is the web application for the an imaginery e-commerce website called "**Common Shop**". It is built with Vue.js as a single page application.
+This is the web application for an imaginery e-commerce website called "**Common Shop**". It is built with Vue.js as a single page application.
 
 CICD is implemented with Github Actions and the web application is hosted [here](https://common-shop.tengweisong.com).
 
