@@ -4,8 +4,9 @@
     <p v-if="order.id">Order ID: {{ order.id }}</p>
     <p v-if="order.date">Order date: {{ order.date }}</p>
     <p>Order total: ${{ order.totalPrice }}</p>
+    <p>Order status: {{ order.orderStatus }}</p>
     <p class="has-text-weight-bold mt-3">Products Purchased</p>
-    <p>You have 4 items in your order</p>
+    <p>You have {{ order.totalQuantity }} items in your order</p>
     <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>
@@ -15,8 +16,12 @@
       </thead>
       <tbody>
         <tr v-for="product in order.products" :key="product.id">
-          <td>{{ product.count }} &times; {{ product.title }}</td>
+          <td>{{ product.quantity }} &times; {{ product.title }}</td>
           <td>${{ product.price }}</td>
+        </tr>
+        <tr v-for="fee in order.fees" :key="fee.id">
+          <td>{{ fee.title }}</td>
+          <td>${{ fee.cost }}</td>
         </tr>
       </tbody>
       <tfoot>
@@ -29,15 +34,14 @@
     <p class="has-text-weight-bold mt-3">Shipping Information</p>
     <p>Ship to:</p>
     <p>{{ customer.name }}</p>
-    <p>{{ customer.email }}</p>
-    <p>{{ customer.address.line1 }}</p>
-    <p>{{ customer.address.line2 }}</p>
-    <p>{{ customer.address.postalCode }}</p>
+    <p>{{ shippingAddress.line1 }}</p>
+    <p>{{ shippingAddress.line2 }}</p>
+    <p>{{ shippingAddress.postalCode }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["order", "customer"]
+  props: ["order", "customer", "shippingAddress"]
 };
 </script>

@@ -21,6 +21,7 @@
         v-if="selectedOrder.id"
         :order="selectedOrder"
         :customer="selectedOrder.customer"
+        :shippingAddress="selectedOrder.shippingAddress"
       ></order-summary>
     </modal>
   </page>
@@ -46,12 +47,16 @@ export default {
     };
   },
   created() {
-    this.orders = orderService.getOrders();
+    orderService.getOrders().then(orders => {
+      this.orders = orders;
+    });
   },
   methods: {
     showOrderDetail(order) {
-      this.selectedOrder = order;
-      this.isModalShown = true;
+      orderService.getOrder(order.id).then(order => {
+        this.selectedOrder = order;
+        this.isModalShown = true;
+      });
     }
   }
 };
