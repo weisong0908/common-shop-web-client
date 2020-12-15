@@ -114,16 +114,16 @@ export default {
   created() {
     const productsInShoppingCart = this.$store.state.productsInShoppingCart;
 
-    this.products = productsInShoppingCart.map(product => {
-      const productData = productService.getProduct(product.id);
-
-      return {
-        id: product.id,
-        count: parseInt(product.count),
-        title: productData.title,
-        price: productData.price,
-        thumbnailUrl: productData.thumbnailUrl
-      };
+    productsInShoppingCart.forEach(element => {
+      productService.getProduct(element.id).then(product => {
+        this.products.push({
+          id: product.id,
+          count: product.quantity,
+          title: product.title,
+          price: product.price,
+          thumbnailUrl: product.thumbnailUrl
+        });
+      });
     });
   },
   computed: {

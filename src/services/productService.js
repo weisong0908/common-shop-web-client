@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export default {
-  getProducts() {
-    return axios
-      .get(`${process.env.VUE_APP_WEBAPI}/products`)
-      .then(resp => resp.data);
+  async getProducts() {
+    const resp = await axios.get(`${process.env.VUE_APP_WEBAPI}/products`);
+    return resp.data;
   },
-  getProduct(id) {
-    return axios
-      .get(`${process.env.VUE_APP_WEBAPI}/products/${id}`)
-      .then(resp => resp.data);
+  async getProduct(id) {
+    const resp = await axios.get(
+      `${process.env.VUE_APP_WEBAPI}/products/${id}`
+    );
+    return resp.data;
   }
 };
