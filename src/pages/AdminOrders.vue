@@ -21,6 +21,7 @@
           <th>Date</th>
           <th>Total Price</th>
           <th>Customer ID</th>
+          <th>Order Status</th>
           <th></th>
         </tr>
       </thead>
@@ -29,7 +30,8 @@
           <td>{{ order.id }}</td>
           <td>{{ order.date }}</td>
           <td>{{ order.totalPrice }}</td>
-          <td>{{ order.customer }}</td>
+          <td>{{ order.customerId }}</td>
+          <td>{{ order.orderStatus }}</td>
           <td>
             <router-link
               :to="{ name: 'adminOrderDetail', params: { id: order.id } }"
@@ -65,7 +67,7 @@ export default {
     };
   },
   mounted() {
-    orderService.getOrders().then(orders => (this.orders = orders));
+    orderService.getOrdersForAdmin().then(orders => (this.orders = orders));
   },
   methods: {
     goToPage(pageNumber) {

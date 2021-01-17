@@ -4,12 +4,14 @@
       <thead>
         <tr>
           <th>Date</th>
+          <th>Total Price</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="order in orders" :key="order.id">
           <td>{{ order.date }}</td>
+          <td>${{ order.totalPrice }}</td>
           <td>
             <a @click="showOrderDetail(order)">View</a>
           </td>
@@ -20,8 +22,6 @@
       <order-summary
         v-if="selectedOrder.id"
         :order="selectedOrder"
-        :customer="selectedOrder.customer"
-        :shippingAddress="selectedOrder.shippingAddress"
       ></order-summary>
     </modal>
   </page>

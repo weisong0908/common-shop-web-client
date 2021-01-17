@@ -33,15 +33,15 @@
     </table>
     <p class="has-text-weight-bold mt-3">Shipping Information</p>
     <p>Ship to:</p>
-    <p>{{ customer.name }}</p>
-    <p>{{ shippingAddress.line1 }}</p>
-    <p>{{ shippingAddress.line2 }}</p>
-    <p>{{ shippingAddress.postalCode }}</p>
+    <p>{{ order.customer.name }}</p>
+    <p>{{ order.customer.primaryAddress.line1 }}</p>
+    <p>{{ order.customer.primaryAddress.line2 }}</p>
+    <p>{{ order.customer.primaryAddress.postalCode }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["order", "customer", "shippingAddress"]
+  props: ["order"]
 };
 </script>
