@@ -128,14 +128,7 @@ export default {
   },
   computed: {
     productCountInShoppingCart() {
-      const count = this.$store.state.shoppingCart.shoppingCart.reduce(
-        (pv, cv) => {
-          return pv + cv.count;
-        },
-        0
-      );
-
-      return parseInt(count);
+      return this.$store.getters["shoppingCart/productCount"];
     },
     totalPrice() {
       return this.products.reduce((pv, cv) => {

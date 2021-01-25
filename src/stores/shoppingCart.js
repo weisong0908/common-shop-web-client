@@ -2,6 +2,18 @@ export default {
   state: {
     shoppingCart: []
   },
+  getters: {
+    shoppingCart: state => {
+      return state.shoppingCart;
+    },
+    productCount: (state, getters) => {
+      const count = getters.shoppingCart.reduce((pv, cv) => {
+        return pv + cv.count;
+      }, 0);
+      console.log("count", parseInt(count));
+      return parseInt(count);
+    }
+  },
   mutations: {
     addNewProductToShoppingCart(state, productId) {
       state.shoppingCart.push({ id: productId, count: 1 });
