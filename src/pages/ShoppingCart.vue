@@ -112,13 +112,13 @@ export default {
     };
   },
   created() {
-    const productsInShoppingCart = this.$store.state.productsInShoppingCart;
+    const shoppingCart = this.$store.state.shoppingCart.shoppingCart;
 
-    productsInShoppingCart.forEach(element => {
+    shoppingCart.forEach(element => {
       productService.getProduct(element.id).then(product => {
         this.products.push({
           id: product.id,
-          count: product.quantity,
+          count: element.count,
           title: product.title,
           price: product.price,
           thumbnailUrl: product.thumbnailUrl
@@ -128,7 +128,7 @@ export default {
   },
   computed: {
     productCountInShoppingCart() {
-      const count = this.$store.state.productsInShoppingCart.reduce(
+      const count = this.$store.state.shoppingCart.shoppingCart.reduce(
         (pv, cv) => {
           return pv + cv.count;
         },
@@ -147,7 +147,7 @@ export default {
     stepDownProductCount(productId) {
       const product = this.products.find(p => p.id == productId);
       product.count--;
-      this.$store.dispatch("updateShoppingCart", {
+      this.$store.dispatch("shoppingCart/update", {
         productId,
         productCount: product.count
       });
@@ -155,17 +155,20 @@ export default {
     stepUpProductCount(productId) {
       const product = this.products.find(p => p.id == productId);
       product.count++;
-      this.$store.dispatch("updateShoppingCart", {
+      this.$store.dispatch("shoppingCart/update", {
         productId,
         productCount: product.count
       });
     },
     changeProductCount(productId, productCount) {
-      this.$store.dispatch("updateShoppingCart", { productId, productCount });
+      this.$store.dispatch("shoppingCart/update", {
+        productId,
+        productCount
+      });
     },
     clearShoppingCart() {
       this.products = [];
-      this.$store.dispatch("clearShoppingCart");
+      this.$store.dispatch("shoppingCart/clear");
     },
     checkOut() {
       this.$store.dispatch("createOrder", {
@@ -180,7 +183,7 @@ export default {
         totalPrice: this.totalPrice
       });
 
-      this.$store.dispatch("clearShoppingCart");
+      this.$store.dispatch("shoppingCart/clear");
 
       this.$router.push({ name: "checkOut" });
     }

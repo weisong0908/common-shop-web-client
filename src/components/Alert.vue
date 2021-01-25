@@ -1,14 +1,14 @@
 <template>
   <article
-    v-if="$store.state.alert.isActive"
-    :class="'message is-' + $store.state.alert.type"
+    v-if="$store.state.utilities.alert.isActive"
+    :class="'message is-' + $store.state.utilities.alert.type"
   >
     <div class="message-header">
-      <p>{{ $store.state.alert.heading }}</p>
+      <p>{{ $store.state.utilities.alert.heading }}</p>
       <button class="delete" aria-label="delete" @click="hideAlert"></button>
     </div>
     <div class="message-body">
-      {{ $store.state.alert.message }}
+      {{ $store.state.utilities.alert.message }}
     </div>
   </article>
 </template>
@@ -17,7 +17,7 @@
 export default {
   methods: {
     hideAlert() {
-      this.$store.dispatch("hideAlert");
+      this.$store.dispatch("utilities/hideAlert");
     }
   }
 };
