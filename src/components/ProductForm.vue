@@ -85,17 +85,30 @@
     </div>
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-primary">Save</button>
+        <button class="button is-primary" @click="updateProduct">Save</button>
       </div>
       <div class="control">
-        <button class="button is-danger">Cancel</button>
+        <button class="button is-danger" @click="reset">Cancel</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import productService from "../services/productService";
+
 export default {
-  props: ["product"]
+  props: ["product"],
+  methods: {
+    reset() {
+      this.$router.go();
+    },
+    updateProduct() {
+      productService.updateProduct(this.product).then(resp => {
+        console.log(resp);
+        this.$router.go();
+      });
+    }
+  }
 };
 </script>
