@@ -60,8 +60,15 @@ const router = new VueRouter({
       parent: "adminDashboard"
     },
     {
-      name: "adminProductDetail",
-      path: "/admin/products/:id",
+      name: "adminUpdateProductDetail",
+      path: "/admin/products/edit",
+      component: AdminProductDetail,
+      title: "Product Detail",
+      parent: "adminProducts"
+    },
+    {
+      name: "adminCreateProductDetail",
+      path: "/admin/products/create",
       component: AdminProductDetail,
       title: "Product Detail",
       parent: "adminProducts"

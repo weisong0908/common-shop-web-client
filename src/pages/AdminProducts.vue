@@ -3,7 +3,9 @@
     <breadcrumb></breadcrumb>
     <div class="field">
       <div class="control">
-        <button class="button is-primary">New Product</button>
+        <button class="button is-primary" @click="createNewProduct">
+          New Product
+        </button>
       </div>
     </div>
     <div class="field has-addons">
@@ -35,7 +37,10 @@
           <td>{{ product.price }}</td>
           <td>
             <router-link
-              :to="{ name: 'adminProductDetail', params: { id: product.id } }"
+              :to="{
+                name: 'adminUpdateProductDetail',
+                query: { id: product.id }
+              }"
               >Edit</router-link
             >
           </td>
@@ -73,6 +78,11 @@ export default {
   methods: {
     goToPage(pageNumber) {
       alert("go to " + pageNumber);
+    },
+    createNewProduct() {
+      this.$router.push({
+        name: "adminCreateProductDetail"
+      });
     }
   }
 };

@@ -10,7 +10,6 @@ export default {
       const count = getters.shoppingCart.reduce((pv, cv) => {
         return pv + cv.count;
       }, 0);
-      console.log("count", parseInt(count));
       return parseInt(count);
     }
   },

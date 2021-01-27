@@ -85,7 +85,7 @@
     </div>
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-primary" @click="updateProduct">Save</button>
+        <button class="button is-primary" @click="save">Save</button>
       </div>
       <div class="control">
         <button class="button is-danger" @click="reset">Cancel</button>
@@ -103,11 +103,22 @@ export default {
     reset() {
       this.$router.go();
     },
-    updateProduct() {
-      productService.updateProduct(this.product).then(resp => {
-        console.log(resp);
-        this.$router.go();
-      });
+    save() {
+      console.log("product", this.product);
+
+      if (this.product.id != null) {
+        productService.updateProduct(this.product).then(resp => {
+          console.log(resp);
+          this.$router.go();
+        });
+      } else {
+        productService.createProduct(this.product).then(resp => {
+          console.log(resp);
+          this.$router.push({
+            name: "adminProducts"
+          });
+        });
+      }
     }
   }
 };
