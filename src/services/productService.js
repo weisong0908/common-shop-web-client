@@ -29,5 +29,12 @@ export default {
     );
 
     return resp.data;
+  },
+
+  async removeProduct(id) {
+    const resp = await axios.delete(
+      `${process.env.VUE_APP_WEBAPI}/products/${id}`
+    );
+    return resp.data;
   }
 };
