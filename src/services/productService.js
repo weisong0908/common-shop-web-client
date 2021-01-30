@@ -36,5 +36,12 @@ export default {
       `${process.env.VUE_APP_WEBAPI}/products/${id}`
     );
     return resp.data;
+  },
+
+  async getProductCategories() {
+    const resp = await axios.get(
+      `${process.env.VUE_APP_WEBAPI}/products/categories`
+    );
+    return resp.data;
   }
 };

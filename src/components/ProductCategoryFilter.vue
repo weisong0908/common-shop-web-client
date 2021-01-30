@@ -4,11 +4,11 @@
       Category
     </p>
     <ul class="menu-list">
-      <li v-for="category in categories" :key="category">
+      <li v-for="category in categories" :key="category.id">
         <a
           :class="selectedCategory === category ? 'is-active' : ''"
-          @click="selectCategory(category)"
-          >{{ category }}</a
+          @click="selectCategory(category.title)"
+          >{{ category.title }}</a
         >
       </li>
     </ul>
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import productService from "../services/productService";
+
 export default {
   data() {
     return {
@@ -24,7 +26,9 @@ export default {
     };
   },
   created() {
-    this.categories = ["Category 1", "Category 2"];
+    productService.getProductCategories().then(productCategories => {
+      this.categories = productCategories;
+    });
 
     const categoryQuery = this.$route.query.category;
     if (categoryQuery != "" && this.categories.includes(categoryQuery)) {

@@ -63,8 +63,13 @@
         <div class="select">
           <select v-model="product.category">
             <option>Select dropdown</option>
-            <option value="Category 1">Category 1</option>
-            <option value="Category 2">Category 2</option>
+            <option
+              v-for="category in categories"
+              :key="category.id"
+              :value="category.title"
+            >
+              {{ category.title }}</option
+            >
           </select>
         </div>
       </div>
@@ -102,6 +107,11 @@ import productService from "../services/productService";
 
 export default {
   props: ["product"],
+  data() {
+    return {
+      categories: []
+    };
+  },
   methods: {
     reset() {
       this.$router.go();
@@ -129,6 +139,12 @@ export default {
         });
       });
     }
+  },
+  created() {
+    console.log("product", this.product);
+    productService
+      .getProductCategories()
+      .then(productCategories => (this.categories = productCategories));
   }
 };
 </script>
