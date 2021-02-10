@@ -1,6 +1,11 @@
 <template>
   <page>
     <breadcrumb></breadcrumb>
+    <article class="message">
+      <div class="message-body">
+        <strong>{{ totalProductCount }}</strong> product(s) in total
+      </div>
+    </article>
     <div class="field">
       <div class="control">
         <button class="button is-primary" @click="createNewProduct">
@@ -48,8 +53,8 @@
       </tbody>
     </table>
     <pagination
-      :currentPageNumber="10"
-      :totalPageCount="10"
+      :currentPageNumber="currentPageNumber"
+      :totalPageCount="totalPageCount"
       @goToPage="goToPage"
     ></pagination>
   </page>
@@ -69,15 +74,31 @@ export default {
   },
   data() {
     return {
-      products: []
+      products: [],
+      productsPerPage: 10,
+      totalProductCount: "",
+      totalPageCount: "",
+      currentPageNumber: 1
     };
   },
   mounted() {
-    productService.getProducts().then(products => (this.products = products));
+    this.getProducts();
   },
   methods: {
     goToPage(pageNumber) {
-      alert("go to " + pageNumber);
+      this.currentPageNumber = pageNumber;
+      this.getProducts();
+    },
+    getProducts() {
+      productService
+        .getProducts(this.productsPerPage, this.currentPageNumber, "")
+        .then(response => {
+          this.products = response.products;
+          this.totalProductCount = response.totalProductCount;
+          this.totalPageCount = Math.ceil(
+            this.totalProductCount / this.productsPerPage
+          );
+        });
     },
     createNewProduct() {
       this.$router.push({
