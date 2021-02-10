@@ -8,9 +8,9 @@
     >
     <a
       class="pagination-next"
-      :disabled="currentPageNumber === totalPageCount"
+      :disabled="currentPageNumber >= totalPageCount"
       @click="
-        currentPageNumber === totalPageCount
+        currentPageNumber >= totalPageCount
           ? true
           : goToPage(currentPageNumber + 1)
       "
