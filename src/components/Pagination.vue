@@ -67,7 +67,7 @@
 
 <script>
 export default {
-  props: ["currentPageNumber", "totalPageCount"],
+  props: ["currentPageNumber", "totalPageCount", "pageSize"],
   methods: {
     goToPage(pageNumber) {
       this.$emit("goToPage", pageNumber);

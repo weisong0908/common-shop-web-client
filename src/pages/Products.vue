@@ -24,8 +24,8 @@
           </div>
         </div>
         <pagination
-          :currentPageNumber="2"
-          :totalPageCount="20"
+          :currentPageNumber="currentPageNumber"
+          :totalPageCount="totalPageCount"
           @goToPage="goToPage"
         ></pagination>
       </div>
@@ -45,34 +45,39 @@ export default {
   data() {
     return {
       products: [],
-      selectedCategory: null
+      selectedCategory: null,
+      productsPerPage: 8,
+      totalPageCount: "",
+      currentPageNumber: 1
     };
   },
   created() {
-    this.showProducts(this.$route.query.category);
+    this.selectedCategory = this.$route.query.category;
+    this.showProducts();
   },
   beforeRouteUpdate(to, from, next) {
-    this.showProducts(to.query.category);
+    this.selectedCategory = to.query.category;
+    this.showProducts();
     next();
   },
   methods: {
-    showProducts(category) {
-      if (category == null) {
-        productService.getProducts().then(products => {
-          this.products = products;
-        });
-      } else {
-        productService
-          .getProducts()
-          .then(
-            products =>
-              (this.products = products.filter(p => p.category === category))
+    showProducts() {
+      productService
+        .getProducts(
+          this.productsPerPage,
+          this.currentPageNumber,
+          this.selectedCategory != undefined ? this.selectedCategory : ""
+        )
+        .then(response => {
+          this.products = response.products;
+          this.totalPageCount = Math.ceil(
+            response.totalProductCount / this.productsPerPage
           );
-      }
-      this.selectedCategory = category;
+        });
     },
     goToPage(pageNumber) {
-      alert("go to " + pageNumber);
+      this.currentPageNumber = pageNumber;
+      this.showProducts();
     }
   }
 };

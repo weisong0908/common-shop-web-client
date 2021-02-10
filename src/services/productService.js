@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export default {
-  async getProducts() {
-    const resp = await axios.get(`${process.env.VUE_APP_WEBAPI}/products`);
+  async getProducts(pageSize, pageNumber, category) {
+    const resp = await axios.get(
+      `${process.env.VUE_APP_WEBAPI}/products?pageSize=${pageSize}&pageNumber=${pageNumber}&category=${category}`
+    );
     return resp.data;
   },
 
