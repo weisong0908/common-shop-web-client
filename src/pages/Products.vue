@@ -6,11 +6,11 @@
       </div>
       <div class="column">
         <article class="message">
-          <div class="message-body" v-if="selectedCategory">
-            Showing products in <strong>{{ selectedCategory }}</strong>
-          </div>
-          <div class="message-body" v-else>
-            Showing all products
+          <div class="message-body">
+            Showing {{ products.length }} of {{ totalProductCount }} products
+            <span v-if="selectedCategory">
+              in <strong>{{ selectedCategory }}</strong></span
+            >
           </div>
         </article>
         <div class="columns is-multiline">
@@ -47,6 +47,7 @@ export default {
       products: [],
       selectedCategory: null,
       productsPerPage: 8,
+      totalProductCount: "",
       totalPageCount: "",
       currentPageNumber: 1
     };
@@ -57,6 +58,7 @@ export default {
   },
   beforeRouteUpdate(to, from, next) {
     this.selectedCategory = to.query.category;
+    this.currentPageNumber = 1;
     this.showProducts();
     next();
   },
@@ -70,8 +72,9 @@ export default {
         )
         .then(response => {
           this.products = response.products;
+          this.totalProductCount = response.totalProductCount;
           this.totalPageCount = Math.ceil(
-            response.totalProductCount / this.productsPerPage
+            this.totalProductCount / this.productsPerPage
           );
         });
     },
