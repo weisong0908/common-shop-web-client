@@ -164,16 +164,36 @@ export default {
       this.$store.dispatch("shoppingCart/clear");
     },
     checkOut() {
-      this.$store.dispatch("createOrder", {
+      this.$store.dispatch("order/createNew", {
         products: this.products.map(p => {
           return {
             id: p.id,
             title: p.title,
             price: p.price * p.count,
-            count: p.count
+            quantity: p.count
           };
         }),
-        totalPrice: this.totalPrice
+        totalPrice: this.totalPrice + 2,
+        date: new Date().toLocaleString(),
+        fees: [
+          {
+            cost: 2,
+            id: "02238e28-1b03-48db-94b9-c0b335ae6d7a",
+            title: "Shipping fee"
+          }
+        ],
+        customer: {
+          email: "weisong0908@gmail.com",
+          id: "97bdd552-ae59-403a-ba6c-3162d17560ec",
+          name: "John 3",
+          phone: "98765432",
+          primaryAddress: {
+            id: "c9871377-210e-4979-a006-a8e156b05147",
+            line1: "Block 3 Street 6",
+            line2: "#7-9",
+            postalCode: "123456"
+          }
+        }
       });
 
       this.$store.dispatch("shoppingCart/clear");

@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import shoppingCart from "./shoppingCart.js";
 import utilities from "./utilities.js";
+import order from "./order.js";
 
 Vue.use(Vuex);
 
@@ -14,6 +15,10 @@ export default new Vuex.Store({
     utilities: {
       namespaced: true,
       ...utilities
+    },
+    order: {
+      namespaced: true,
+      ...order
     }
   }
 });

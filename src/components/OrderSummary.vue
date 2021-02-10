@@ -6,7 +6,7 @@
     <p>Order total: ${{ order.totalPrice }}</p>
     <p>Order status: {{ order.orderStatus }}</p>
     <p class="has-text-weight-bold mt-3">Products Purchased</p>
-    <p>You have {{ order.totalQuantity }} items in your order</p>
+    <p>You have the following item(s) in your order:</p>
     <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>

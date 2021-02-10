@@ -6,10 +6,7 @@
       </div>
       <div class="column">
         <div class="box">
-          <order-summary
-            :order="$store.state.order"
-            :customer="customer"
-          ></order-summary>
+          <order-summary :order="$store.state.order.order"></order-summary>
         </div>
       </div>
     </div>
