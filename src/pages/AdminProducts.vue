@@ -21,9 +21,7 @@
         <input type="text" class="input" />
       </div>
       <div class="control">
-        <button class="button">
-          Clear Search
-        </button>
+        <button class="button">Clear Search</button>
       </div>
     </div>
     <table class="table is-hoverable is-fullwidth">

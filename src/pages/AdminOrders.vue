@@ -9,9 +9,7 @@
         <input type="text" class="input" />
       </div>
       <div class="control">
-        <button class="button">
-          Clear Search
-        </button>
+        <button class="button">Clear Search</button>
       </div>
     </div>
     <table class="table is-hoverable is-fullwidth">
@@ -42,8 +40,8 @@
       </tbody>
     </table>
     <pagination
-      :currentPageNumber="10"
-      :totalPageCount="10"
+      :currentPageNumber="currentPageNumber"
+      :totalPageCount="totalPageCount"
       @goToPage="goToPage"
     ></pagination>
   </page>
@@ -63,15 +61,31 @@ export default {
   },
   data() {
     return {
-      orders: []
+      orders: [],
+      ordersPerPage: 3,
+      totalOrderCount: "",
+      totalPageCount: "",
+      currentPageNumber: 1
     };
   },
   mounted() {
-    orderService.getOrdersForAdmin().then(orders => (this.orders = orders));
+    this.getOrders();
   },
   methods: {
     goToPage(pageNumber) {
-      alert("go to " + pageNumber);
+      this.currentPageNumber = pageNumber;
+      this.getOrders();
+    },
+    getOrders() {
+      orderService
+        .getOrdersForAdmin(this.ordersPerPage, this.currentPageNumber)
+        .then(response => {
+          this.orders = response.orders;
+          this.totalOrderCount = response.totalOrderCount;
+          this.totalPageCount = Math.ceil(
+            this.totalOrderCount / this.ordersPerPage
+          );
+        });
     }
   }
 };

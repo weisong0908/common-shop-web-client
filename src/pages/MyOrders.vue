@@ -18,6 +18,11 @@
         </tr>
       </tbody>
     </table>
+    <pagination
+      :currentPageNumber="currentPageNumber"
+      :totalPageCount="totalPageCount"
+      @goToPage="goToPage"
+    ></pagination>
     <modal :isActive="isModalShown" @close="isModalShown = false">
       <order-summary
         v-if="selectedOrder.id"
@@ -29,6 +34,7 @@
 
 <script>
 import Page from "../components/Page";
+import Pagination from "../components/Pagination";
 import Modal from "../components/Modal";
 import OrderSummary from "../components/OrderSummary";
 import orderService from "../services/orderService";
@@ -36,22 +42,40 @@ import orderService from "../services/orderService";
 export default {
   components: {
     Page,
+    Pagination,
     Modal,
     OrderSummary
   },
   data() {
     return {
       orders: [],
+      ordersPerPage: 3,
+      totalOrderCount: "",
+      totalPageCount: "",
+      currentPageNumber: 1,
       selectedOrder: {},
       isModalShown: false
     };
   },
-  created() {
-    orderService.getOrders().then(orders => {
-      this.orders = orders;
-    });
+  mounted() {
+    this.getOrders();
   },
   methods: {
+    goToPage(pageNumber) {
+      this.currentPageNumber = pageNumber;
+      this.getOrders();
+    },
+    getOrders() {
+      orderService
+        .getOrders(this.ordersPerPage, this.currentPageNumber)
+        .then(response => {
+          this.orders = response.orders;
+          this.totalOrderCount = response.totalOrderCount;
+          this.totalPageCount = Math.ceil(
+            this.totalOrderCount / this.ordersPerPage
+          );
+        });
+    },
     showOrderDetail(order) {
       orderService.getOrder(order.id).then(order => {
         this.selectedOrder = order;

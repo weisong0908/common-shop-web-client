@@ -1,12 +1,16 @@
 import axios from "axios";
 
 export default {
-  async getOrders() {
-    const resp = await axios.get(`${process.env.VUE_APP_WEBAPI}/orders`);
+  async getOrders(pageSize, pageNumber) {
+    const resp = await axios.get(
+      `${process.env.VUE_APP_WEBAPI}/orders?pageSize=${pageSize}&pageNumber=${pageNumber}`
+    );
     return resp.data;
   },
-  async getOrdersForAdmin() {
-    const resp = await axios.get(`${process.env.VUE_APP_WEBAPI}/orders/admin`);
+  async getOrdersForAdmin(pageSize, pageNumber) {
+    const resp = await axios.get(
+      `${process.env.VUE_APP_WEBAPI}/orders/admin?pageSize=${pageSize}&pageNumber=${pageNumber}`
+    );
     return resp.data;
   },
   async getOrder(id) {
