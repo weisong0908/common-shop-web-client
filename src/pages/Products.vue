@@ -52,7 +52,7 @@ export default {
       currentPageNumber: 1
     };
   },
-  created() {
+  mounted() {
     this.selectedCategory = this.$route.query.category;
     this.showProducts();
   },
