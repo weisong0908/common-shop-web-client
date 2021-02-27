@@ -53,9 +53,11 @@
           class="navbar-item has-dropdown is-hoverable"
           v-if="!$auth.loading && $auth.isAuthenticated"
         >
-          <a class="navbar-link"> Hi {{ $auth.user.name }}! </a>
+          <a class="navbar-link"> Hi {{ $auth.user.nickname }}! </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item"> Profile </a>
+            <router-link class="navbar-item" :to="{ name: 'profile' }">
+              Profile
+            </router-link>
             <router-link class="navbar-item" :to="{ name: 'myOrders' }">
               My Orders
             </router-link>

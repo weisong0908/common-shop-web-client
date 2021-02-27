@@ -1,5 +1,8 @@
 import VueRouter from "vue-router";
+import { authGuard } from "./auth/authGuard";
+
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import Products from "./pages/Products";
 import ShoppingCart from "./pages/ShoppingCart";
 import CheckOut from "./pages/CheckOut";
@@ -20,6 +23,13 @@ const router = new VueRouter({
       path: "/",
       component: Home,
       title: "Welcome to Common Shop"
+    },
+    {
+      name: "profile",
+      path: "/profile",
+      component: Profile,
+      title: "Profile",
+      beforeEnter: authGuard
     },
     {
       name: "products",
