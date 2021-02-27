@@ -49,25 +49,20 @@
       </div>
 
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            User
-          </a>
+        <div
+          class="navbar-item has-dropdown is-hoverable"
+          v-if="!$auth.loading && $auth.isAuthenticated"
+        >
+          <a class="navbar-link"> Hi {{ $auth.user.name }}! </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item">
-              Profile
-            </a>
+            <a class="navbar-item"> Profile </a>
             <router-link class="navbar-item" :to="{ name: 'myOrders' }">
               My Orders
             </router-link>
             <hr class="navbar-divider" />
-            <a class="navbar-item">
-              Report an issue
-            </a>
+            <a class="navbar-item"> Report an issue </a>
             <hr class="navbar-divider" />
-            <div class="navbar-item has-text-info is-size-7">
-              Adminstration
-            </div>
+            <div class="navbar-item has-text-info is-size-7">Adminstration</div>
             <router-link class="navbar-item" :to="{ name: 'adminDashboard' }">
               Dashboard
             </router-link>
@@ -79,12 +74,23 @@
             </router-link>
           </div>
         </div>
-        <div class="navbar-item">
+        <div class="navbar-item" v-if="!$auth.loading">
           <div class="buttons">
-            <a class="button is-primary">
+            <a class="button is-primary" v-if="!$auth.isAuthenticated">
               <strong>Sign up</strong>
             </a>
-            <a class="button is-light">
+            <a
+              class="button is-light"
+              v-if="$auth.isAuthenticated"
+              @click="logout"
+            >
+              Log out
+            </a>
+            <a
+              class="button is-light"
+              v-if="!$auth.isAuthenticated"
+              @click="login"
+            >
               Log in
             </a>
           </div>
@@ -114,6 +120,16 @@ export default {
   computed: {
     productCountInShoppingCart() {
       return this.$store.getters["shoppingCart/productCount"];
+    }
+  },
+  methods: {
+    login() {
+      this.$auth.loginWithRedirect();
+    },
+    logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
     }
   }
 };
